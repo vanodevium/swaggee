@@ -1,0 +1,413 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "swaggee",
+    "version": "0.0.1",
+    "description": "Convert apidoc comments to swagger.json"
+  },
+  "paths": {
+    "/users": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Endpoint for user creation",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "JWT token"
+          },
+          {
+            "name": "account-id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "number"
+            },
+            "description": "Account ID"
+          }
+        ],
+        "requestBody": {
+          "description": "CreateUser request",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCreateUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCreateUser"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorCreateUser"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User profiles",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "JWT token"
+          },
+          {
+            "name": "account-id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "number"
+            },
+            "description": "Account ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGetUsers"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "User ID"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "JWT token"
+          },
+          {
+            "name": "account-id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "number"
+            },
+            "description": "Account ID"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDeleteUser"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User profile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "User ID"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "JWT token"
+          },
+          {
+            "name": "account-id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "number"
+            },
+            "description": "Account ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUser"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGetUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RequestCreateUser": {
+        "properties": {
+          "firstname": {
+            "type": "string",
+            "description": "Firstname of the User"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Lastname of the User"
+          },
+          "enum-string": {
+            "type": "string",
+            "description": "Enum string field",
+            "default": "two",
+            "enum": [
+              "one",
+              "two",
+              "three"
+            ]
+          },
+          "enum-numeric": {
+            "type": "integer",
+            "description": "Enum number field",
+            "default": "5"
+          },
+          "enum-float": {
+            "type": "number",
+            "description": "Enum float field",
+            "format": "double",
+            "default": "0.9"
+          },
+          "foo-bar": {
+            "type": "string",
+            "description": "FooBar field"
+          },
+          "string-array": {
+            "type": "array",
+            "description": "Array of strings",
+            "items": {
+              "type": "string"
+            }
+          },
+          "objective": {
+            "$ref": "#/components/schemas/RequestObjective"
+          },
+          "array": {
+            "type": "array",
+            "description": "Array field",
+            "items": {
+              "type": "string"
+            }
+          },
+          "date": {
+            "type": "string",
+            "description": "Date format field",
+            "format": "date"
+          },
+          "datetime": {
+            "type": "string",
+            "description": "Datetime format field",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "firstname",
+          "lastname",
+          "enum-string",
+          "enum-numeric",
+          "enum-float",
+          "foo-bar",
+          "objective",
+          "array",
+          "date",
+          "datetime"
+        ]
+      },
+      "RequestObjective": {
+        "properties": {
+          "number": {
+            "type": "number",
+            "description": "Number field"
+          },
+          "string": {
+            "type": "string",
+            "description": "String field"
+          }
+        },
+        "required": [
+          "number"
+        ]
+      },
+      "ResponseCreateUser": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "ID of the User"
+          },
+          "firstname": {
+            "type": "string",
+            "description": "Firstname of the User"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Lastname of the User"
+          }
+        },
+        "required": [
+          "id",
+          "firstname",
+          "lastname"
+        ]
+      },
+      "ErrorCreateUser": {
+        "properties": {
+          "errorMessage": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "id": {
+            "type": "integer",
+            "description": "User ID"
+          }
+        },
+        "required": [
+          "errorMessage",
+          "id"
+        ]
+      },
+      "ResponseGetUsers": {
+        "properties": {
+          "users": {
+            "type": "array",
+            "description": "User profiles",
+            "items": {
+              "$ref": "#/components/schemas/ResponseUser"
+            }
+          }
+        },
+        "required": [
+          "users"
+        ]
+      },
+      "ErrorDeleteUser": {
+        "properties": {
+          "errorMessage": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "id": {
+            "type": "integer",
+            "description": "User ID"
+          }
+        },
+        "required": [
+          "errorMessage",
+          "id"
+        ]
+      },
+      "ResponseUser": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "ID of the User"
+          },
+          "firstname": {
+            "type": "string",
+            "description": "Firstname of the User"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Lastname of the User"
+          }
+        },
+        "required": [
+          "id",
+          "firstname",
+          "lastname"
+        ]
+      },
+      "ErrorGetUser": {
+        "properties": {
+          "errorMessage": {
+            "type": "string",
+            "description": "Conflict situation"
+          },
+          "id": {
+            "type": "integer",
+            "description": "User ID"
+          }
+        },
+        "required": [
+          "errorMessage",
+          "id"
+        ]
+      }
+    }
+  }
+}

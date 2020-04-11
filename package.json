@@ -1,0 +1,82 @@
+{
+  "name": "swaggee",
+  "version": "0.0.1",
+  "description": "Convert apidoc comments to swagger.json",
+  "author": "Vano Devium <webdevium@gmail.com>",
+  "license": "MIT",
+  "preferGlobal": true,
+  "bin": "bin/swaggee.js",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webdevium/swaggee.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webdevium/swaggee/issues"
+  },
+  "keywords": [
+    "api",
+    "apidoc",
+    "doc",
+    "docs",
+    "documentation",
+    "rest",
+    "restful",
+    "swagger"
+  ],
+  "engines": {
+    "node": ">= 8"
+  },
+  "dependencies": {
+    "commander": "^3.0.2",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.4",
+    "iconv-lite": "^0.5.0",
+    "klaw-sync": "^6.0.0",
+    "lodash": "^4.17.15",
+    "marked": "^0.7.0",
+    "path-to-regexp": "^3.1.0",
+    "semver": "^6.3.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.6.3",
+    "@babel/register": "^7.6.2",
+    "husky": "^3.0.8",
+    "jest": "^24.9.0",
+    "jshint": "^2.10.2",
+    "prettier": "1.18.2",
+    "pretty-quick": "^1.11.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "jshint": "jshint bin lib test"
+  },
+  "jshintConfig": {
+    "esversion": 6,
+    "camelcase": true,
+    "curly": false,
+    "eqeqeq": true,
+    "forin": true,
+    "latedef": false,
+    "newcap": true,
+    "undef": true,
+    "unused": true,
+    "trailing": true,
+    "node": true,
+    "browser": true,
+    "predef": [
+      "test",
+      "expect",
+      "it",
+      "describe",
+      "before",
+      "after"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
