@@ -33,7 +33,7 @@
     "glob": "^7.1.4",
     "iconv-lite": "^0.5.0",
     "klaw-sync": "^6.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "marked": "^0.7.0",
     "path-to-regexp": "^3.1.0",
     "semver": "^6.3.0",
